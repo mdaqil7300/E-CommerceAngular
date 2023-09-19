@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { EcommServiceService } from '../ecomm-service.service';
 
 @Component({
   selector: 'app-seller-auth',
@@ -8,10 +9,12 @@ import { NgForm } from '@angular/forms';
 })
 export class SellerAuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ecommservice:EcommServiceService) { }
   ngOnInit(): void {
   }
   signup(form:object){
-    console.log(form)
+    this.ecommservice.sellerSignup(form).subscribe(res=>{
+      console.log(res)
+    })
   }
 }

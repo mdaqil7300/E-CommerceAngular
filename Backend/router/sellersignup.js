@@ -4,6 +4,14 @@ const mongoose = require('mongoose')
 const Signup = require('../models/signup');
 const bcrypt = require('bcrypt');
 
+
+router.get('/',(req,res,next)=>{
+    Signup.find().then(result=>{
+        res.status(200).json({
+            signupdata:result
+        })
+    })
+})
 router.post('/',(req,res,next)=>{
     bcrypt.hash(req.body.password,10,(err,signupresult)=>{
         if(err){
